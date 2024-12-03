@@ -1,3 +1,5 @@
+package defau;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,13 +9,45 @@ public class Library {
     private List<Book> books = new ArrayList<>();
 
     // Add a new member to the library
-    public void addMember(Member member) {
-        members.add(member);
+    public boolean addMember(Member member) {
+        if (findMemberById(member.getId()) != null) {
+            System.out.println("Member with ID " + member.getId() + " already exists.");
+            return false; // Addition failed
+        }
+        members.add(member); // Add member if ID is unique
+        System.out.println("Member added successfully.");
+        return true; // Addition successful
+    }
+
+    // Find a member by ID
+    public Member findMemberById(int id) {
+        for (Member member : members) {
+            if (member.getId() == id) {
+                return member; // Return the member if the ID matches
+            }
+        }
+        return null; // No member found with this ID
     }
 
     // Add a new book to the library
-    public void addBook(Book book) {
-        books.add(book);
+    public boolean addBook(Book book) {
+        if (findBookById(book.getId()) != null) {
+            System.out.println("Book with ID " + book.getId() + " already exists.");
+            return false; // Addition failed
+        }
+        books.add(book); // Add book if ID is unique
+        System.out.println("Book added successfully.");
+        return true; // Addition successful
+    }
+
+    // Find a book by ID
+    public Book findBookById(int id) {
+        for (Book book : books) {
+            if (book.getId() == id) {
+                return book; // Return the book if the ID matches
+            }
+        }
+        return null; // No book found with this ID
     }
 
     // Get the list of members
@@ -24,6 +58,31 @@ public class Library {
     // Get the list of books
     public List<Book> getBooks() {
         return books;
+    }
+
+    // Borrow a book for a member
+    public boolean borrowBook(Book book, Member member) {
+        if (book.isAvailable()) {
+            book.borrowBook(); // Mark the book as borrowed
+            member.borrowBook(book); // Add the book to the member's borrowed list
+            Transaction.getTransaction().borrowBook(book, member); // Use the Singleton instance
+            return true;
+        } else {
+            System.out.println("The book is not available.");
+            return false;
+        }
+    }
+
+    // Return a borrowed book
+    public boolean returnBook(Book book, Member member) {
+        if (member.returnBook(book)) {
+            book.returnBook(); // Mark the book as returned
+            Transaction.getTransaction().returnBook(book, member); // Use the Singleton instance
+            return true;
+        } else {
+            System.out.println("This book was not borrowed by the member.");
+            return false;
+        }
     }
 
     // Save library data to a file
@@ -78,5 +137,10 @@ public class Library {
         } catch (IOException e) {
             System.out.println("Error loading library data: " + e.getMessage());
         }
+    }
+
+    // View transaction history (e.g., borrowed/returned books)
+    public void viewTransactionHistory() {
+        Transaction.getTransaction().displayTransactionHistory(); // Use Singleton to view history
     }
 }
