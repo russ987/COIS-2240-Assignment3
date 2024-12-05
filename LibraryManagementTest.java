@@ -32,7 +32,7 @@ class LibaryManagementTest {
     	        Book validBook2 = new Book(999, "Valid Book 2");
     	        assertEquals(999, validBook2.getId(), "Book ID 999 should be valid");
     	    } catch (Exception e) {
-    	        fail("Exception should not be thrown for valid IDs"); dsds
+    	        fail("Exception should not be thrown for valid IDs");
     	    }
 
     	    // Test invalid IDs

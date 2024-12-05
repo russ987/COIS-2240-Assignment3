@@ -14,7 +14,11 @@ public class LibraryManagement {
 
         while (running) {
             System.out.println("===========================");
+<<<<<<< Updated upstream
             System.out.println("Library Management System");
+=======
+            System.out.println("library Management System");
+>>>>>>> Stashed changes
             System.out.println("1. Add Member");
             System.out.println("2. Add Book");
             System.out.println("3. Borrow Book");

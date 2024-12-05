@@ -3,11 +3,13 @@ public class Book {
     private int id;
     private String title;
     private boolean available;
-
     public Book(int id, String title) {
+        if (id < 100 || id > 999) {
+            throw new IllegalArgumentException("Book ID must be between 100 and 999");
+        }
         this.id = id;
         this.title = title;
-        this.available = true;
+        this.available = true; // Default to available
     }
 
     // Getter methods

@@ -7,7 +7,7 @@ public class Library {
     private List<Member> members = new ArrayList<>();
     private List<Book> books = new ArrayList<>();
 
-    // Add a new member to the library
+    // Add a new member to the Library
     public boolean addMember(Member member) {
         if (findMemberById(member.getId()) != null) {
             System.out.println("Member with ID " + member.getId() + " already exists.");
@@ -28,7 +28,7 @@ public class Library {
         return null; // No member found with this ID
     }
 
-    // Add a new book to the library
+    // Add a new book to the Library
     public boolean addBook(Book book) {
         if (findBookById(book.getId()) != null) {
             System.out.println("Book with ID " + book.getId() + " already exists.");
@@ -84,7 +84,11 @@ public class Library {
         }
     }
 
+<<<<<<< Updated upstream
     // Save library data to a file
+=======
+    // Save Library data to a file
+>>>>>>> Stashed changes
     public void saveLibraryData(String filename) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
             // Save members
@@ -105,7 +109,7 @@ public class Library {
         }
     }
 
-    // Load library data from a file
+    // Load Library data from a file
     public void loadLibraryData(String filename) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
@@ -134,7 +138,7 @@ public class Library {
 
             System.out.println("Library data loaded from " + filename);
         } catch (IOException e) {
-            System.out.println("Error loading library data: " + e.getMessage());
+            System.out.println("Error loading Library data: " + e.getMessage());
         }
     }
 

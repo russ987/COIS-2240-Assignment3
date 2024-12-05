@@ -1,3 +1,5 @@
+package defau;
+
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ public class Transaction {
     // Borrow a book
     public boolean borrowBook(Book book, Member member) {
         if (book.isAvailable()) {
-            book.setAvailable(false);
+            book.borrowBook();
             member.borrowBook(book);
             
             // Record the transaction with date/time
@@ -43,29 +45,27 @@ public class Transaction {
     }
 
     // Return a book
-    public boolean returnBook(Book book, Member member) {
+    public void returnBook(Book book, Member member) {
         if (member.getBorrowedBooks().contains(book)) {
-            book.setAvailable(true);
-            member.returnBook(book); // Assuming you have returnBook in the Member class
+            member.returnBook(book);
+            book.returnBook();
             
             // Record the return transaction with date/time
             String transactionDetails = getCurrentDateTime() + " - Returning: " + member.getName() + " returned " + book.getTitle();
             recordTransaction(transactionDetails); // Log the transaction
             System.out.println(transactionDetails);
-            return true; // Return true when the book is successfully returned
         } else {
             System.out.println("This book was not borrowed by the member.");
-            return false; // Return false when the book was not borrowed
         }
     }
     
-    // Validate member ID
     public void isValidId(Member member) {
-        if (member.getId() >= 100 && member.getId() <= 999) {
-            System.out.println("Member Id is valid");
-        } else {
-            System.out.println("Member Id is invalid. Must be between 100 and 999");
-        }
+    	if(member.getId() >= 100 & member.getId() >= 999 ) {
+    		System.out.println("Member Id is valid");
+    	}
+    	else {
+    		System.out.println("Mmeber Id is invalid. Must be between 100 and 999");
+    	}
     }
 
     // Save a single transaction to file
@@ -101,7 +101,7 @@ public class Transaction {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(new Date());
     }
- 
+
     // Display transaction history
     public void displayTransactionHistory() {
         System.out.println("==== Transaction History ====");
