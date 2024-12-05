@@ -1,4 +1,3 @@
-package defau;
 
 public class Book {
     private int id;
@@ -22,6 +21,10 @@ public class Book {
 
     public boolean isAvailable() {
         return available;
+    }
+    
+    public void setAvailable(boolean available) {
+    	this.available = available;
     }
 
     // Method to borrow the book

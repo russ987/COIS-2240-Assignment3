@@ -1,4 +1,4 @@
-package defau;
+
 import java.util.Scanner;
 
 public class LibraryManagement {
@@ -14,7 +14,7 @@ public class LibraryManagement {
 
         while (running) {
             System.out.println("===========================");
-            System.out.println("Library Management System");
+            System.out.println("Libary Management System");
             System.out.println("1. Add Member");
             System.out.println("2. Add Book");
             System.out.println("3. Borrow Book");

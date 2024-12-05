@@ -1,4 +1,3 @@
-package defau;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -86,7 +85,7 @@ public class Library {
     }
 
     // Save library data to a file
-    public void saveLibraryData(String filename) {
+    public void saveLibaryData(String filename) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
             // Save members
             writer.write("Members:\n");
@@ -100,9 +99,9 @@ public class Library {
                 writer.write(book.getId() + "," + book.getTitle() + "," + book.isAvailable() + "\n");
             }
 
-            System.out.println("Library data saved to " + filename);
+            System.out.println("Libary data saved to " + filename);
         } catch (IOException e) {
-            System.out.println("Error saving library data: " + e.getMessage());
+            System.out.println("Error saving libary data: " + e.getMessage());
         }
     }
 
