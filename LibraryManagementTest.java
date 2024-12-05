@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 
-class LibaryManagementTest {
+class LibraryManagementTest {
 
     private Transaction transaction;
     private Book book;
